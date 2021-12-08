@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-footyvue-dev-181622-authRole",
+      "UnauthRoleArn": "arn:aws:iam::537191076264:role/amplify-footyvue-dev-181622-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::537191076264:role/amplify-footyvue-dev-181622-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-footyvue-dev-181622-deployment",
+      "UnauthRoleName": "amplify-footyvue-dev-181622-unauthRole",
+      "StackName": "amplify-footyvue-dev-181622",
+      "StackId": "arn:aws:cloudformation:eu-west-2:537191076264:stack/amplify-footyvue-dev-181622/fc9ddf10-5852-11ec-9e42-0a855a950a90",
+      "AmplifyAppId": "d1ebw5m4l4jwtx"
+    }
+  }
+}
