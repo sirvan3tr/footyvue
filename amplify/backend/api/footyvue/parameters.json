@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "footyvue",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authfootyvue287b46c4",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

@@ -6,8 +6,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - ls',
-    title: 'ls',
+    titleTemplate: 'FootyVue9000',
+    title: 'FootyVue900',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -25,6 +25,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/amplify.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -49,6 +50,10 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // proxy: true
+  },
+
+  proxy: {
+    '/api/': { target: 'http://localhost:5000/', pathRewrite: { '^/api/': '' }, changeOrigin: true }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

@@ -1,0 +1,57 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+# input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type Team @model 
+  @auth(rules: [
+    { allow: owner, operations: [create, read, update, delete] },
+    { allow: private, operations: [create, read] }
+  ]) {
+  id: ID!
+  name: String!
+  county: String!
+  country: String!
+}
+
+type Game @model
+  @auth(rules: [
+    { allow: owner, operations: [create, read, update, delete] },
+    { allow: private, operations: [create, read] }
+  ]) {
+  id: ID!
+  homeTeamId: ID! @index(name: "byhomeTeamCreatedAtOpponentTeam", sortKeyFields: ["createdAt", "opponentTeamId"], queryField: "GameByHomeTeamCreatedAtOpponentTeam")
+  homeTeam: Team! @hasOne
+  opponentTeamId: ID!
+  opponentTeam: Team! @hasOne
+  createdAt: AWSDateTime!
+  goals: [Goal] @hasMany
+}
+
+type Goal @model
+  @auth(rules: [
+    { allow: owner, operations: [create, read, update, delete] },
+    { allow: private, operations: [create, read] }
+  ]) {
+  id: ID!
+  type: GoalType
+  gameId: ID!
+  game: Game @belongsTo(fields: ["gameId"])
+}
+
+enum GoalType {
+  SET_PIECE
+  OPEN_PLAY
+  PENALTY
+}
+
+type Player @model
+  @auth(rules: [
+    { allow: owner, operations: [create, read, update, delete] },
+    { allow: private, operations: [create, read] }
+  ]) {
+  id: ID!
+  name: String!
+  dob: String!
+  height: Int!  # in cm
+  weight: Int!  # in cm
+}
