@@ -2,8 +2,6 @@
   <v-app dark>
     <amplify-authenticator v-if="authState !== 'signedin'" class="container" />
     <div v-if="authState === 'signedin' && user">
-      <h1>Hello, {{user.username}}</h1>
-      <button @click="signOut()">Sign Out</button>
       <v-navigation-drawer
         v-model="drawer"
         :mini-variant="miniVariant"
@@ -62,9 +60,7 @@
         </v-btn>
       </v-app-bar>
       <v-main>
-        <v-container>
-          <Nuxt />
-        </v-container>
+        <Nuxt />
       </v-main>
       <v-navigation-drawer
         v-model="rightDrawer"
@@ -80,15 +76,13 @@
               </v-icon>
             </v-list-item-action>
             <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+            <v-list-item>Hello, {{user.username}}</v-list-item>
+            <v-list-item>
+              <button @click="signOut()">Sign Out</button>
+            </v-list-item>
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
-      <v-footer
-        :absolute="!fixed"
-        app
-      >
-        <span>&copy; {{ new Date().getFullYear() }}</span>
-      </v-footer>
     </div>
   </v-app>
 </template>
@@ -123,12 +117,17 @@ export default {
           icon: 'mdi-map',
           title: 'Map',
           to: '/map'
+        },
+        {
+          icon: 'mdi-cog',
+          title: 'Profile',
+          to: '/Profile'
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'footyvue',
+      title: 'FootyVue9000',
       user: undefined,
       authState: undefined
     }
