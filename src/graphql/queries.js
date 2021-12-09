@@ -254,6 +254,19 @@ export const getPlayer = /* GraphQL */ `
       dob
       height
       weight
+      locations {
+        items {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          playerLocationsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -273,8 +286,69 @@ export const listPlayers = /* GraphQL */ `
         dob
         height
         weight
+        locations {
+          nextToken
+        }
         createdAt
         updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getLocation = /* GraphQL */ `
+  query GetLocation($id: ID!) {
+    getLocation(id: $id) {
+      id
+      lng
+      lat
+      playerId
+      player {
+        id
+        name
+        dob
+        height
+        weight
+        locations {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      playerLocationsId
+      owner
+    }
+  }
+`;
+export const listLocations = /* GraphQL */ `
+  query ListLocations(
+    $filter: ModelLocationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listLocations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        lng
+        lat
+        playerId
+        player {
+          id
+          name
+          dob
+          height
+          weight
+          createdAt
+          updatedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        playerLocationsId
         owner
       }
       nextToken

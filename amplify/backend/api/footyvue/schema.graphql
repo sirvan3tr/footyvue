@@ -55,6 +55,7 @@ type Player @model
   height: Int!  # in cm
   weight: Int!  # in cm
   locations: [Location] @hasMany
+  twitterURL: AWSURL
 }
 
 type Location @model

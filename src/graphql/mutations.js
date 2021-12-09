@@ -342,6 +342,19 @@ export const createPlayer = /* GraphQL */ `
       dob
       height
       weight
+      locations {
+        items {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          playerLocationsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -359,6 +372,19 @@ export const updatePlayer = /* GraphQL */ `
       dob
       height
       weight
+      locations {
+        items {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          playerLocationsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -376,8 +402,111 @@ export const deletePlayer = /* GraphQL */ `
       dob
       height
       weight
+      locations {
+        items {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          playerLocationsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
+      owner
+    }
+  }
+`;
+export const createLocation = /* GraphQL */ `
+  mutation CreateLocation(
+    $input: CreateLocationInput!
+    $condition: ModelLocationConditionInput
+  ) {
+    createLocation(input: $input, condition: $condition) {
+      id
+      lng
+      lat
+      playerId
+      player {
+        id
+        name
+        dob
+        height
+        weight
+        locations {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      playerLocationsId
+      owner
+    }
+  }
+`;
+export const updateLocation = /* GraphQL */ `
+  mutation UpdateLocation(
+    $input: UpdateLocationInput!
+    $condition: ModelLocationConditionInput
+  ) {
+    updateLocation(input: $input, condition: $condition) {
+      id
+      lng
+      lat
+      playerId
+      player {
+        id
+        name
+        dob
+        height
+        weight
+        locations {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      playerLocationsId
+      owner
+    }
+  }
+`;
+export const deleteLocation = /* GraphQL */ `
+  mutation DeleteLocation(
+    $input: DeleteLocationInput!
+    $condition: ModelLocationConditionInput
+  ) {
+    deleteLocation(input: $input, condition: $condition) {
+      id
+      lng
+      lat
+      playerId
+      player {
+        id
+        name
+        dob
+        height
+        weight
+        locations {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      playerLocationsId
       owner
     }
   }

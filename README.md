@@ -1,4 +1,9 @@
-# ls
+# footyvue9000
+
+# TODO
+ - Feed in Twitter posts from my players so I know how they are feeling.
+ - Have that as a live feed.
+ - Add locations to the DB -> scoutingCase
 
 ## Build Setup
 

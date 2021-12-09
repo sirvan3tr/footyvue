@@ -312,6 +312,19 @@ export const onCreatePlayer = /* GraphQL */ `
       dob
       height
       weight
+      locations {
+        items {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          playerLocationsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -326,6 +339,19 @@ export const onUpdatePlayer = /* GraphQL */ `
       dob
       height
       weight
+      locations {
+        items {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          playerLocationsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       owner
@@ -340,8 +366,102 @@ export const onDeletePlayer = /* GraphQL */ `
       dob
       height
       weight
+      locations {
+        items {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          playerLocationsId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateLocation = /* GraphQL */ `
+  subscription OnCreateLocation($owner: String) {
+    onCreateLocation(owner: $owner) {
+      id
+      lng
+      lat
+      playerId
+      player {
+        id
+        name
+        dob
+        height
+        weight
+        locations {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      playerLocationsId
+      owner
+    }
+  }
+`;
+export const onUpdateLocation = /* GraphQL */ `
+  subscription OnUpdateLocation($owner: String) {
+    onUpdateLocation(owner: $owner) {
+      id
+      lng
+      lat
+      playerId
+      player {
+        id
+        name
+        dob
+        height
+        weight
+        locations {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      playerLocationsId
+      owner
+    }
+  }
+`;
+export const onDeleteLocation = /* GraphQL */ `
+  subscription OnDeleteLocation($owner: String) {
+    onDeleteLocation(owner: $owner) {
+      id
+      lng
+      lat
+      playerId
+      player {
+        id
+        name
+        dob
+        height
+        weight
+        locations {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      playerLocationsId
       owner
     }
   }
