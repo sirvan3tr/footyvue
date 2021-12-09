@@ -54,4 +54,17 @@ type Player @model
   dob: String!
   height: Int!  # in cm
   weight: Int!  # in cm
+  locations: [Location] @hasMany
+}
+
+type Location @model
+  @auth(rules: [
+    { allow: owner, operations: [create, read, update, delete] },
+    { allow: private, operations: [create, read] }
+  ]) {
+  id: ID!
+  lng: Float!
+  lat: Float!
+  playerId: ID!
+  player: Player @belongsTo(fields: ["playerId"])
 }

@@ -116,7 +116,7 @@ export default {
         {
           icon: 'mdi-map',
           title: 'Map',
-          to: '/map'
+          to: '/mapbox'
         },
         {
           icon: 'mdi-cog',

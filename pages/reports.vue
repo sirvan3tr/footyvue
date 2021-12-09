@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+v-container
   p.text-h4 Camera and Scouting Reports
   v-row
     v-col(cols='12')
