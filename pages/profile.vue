@@ -1,11 +1,11 @@
 <template>
-<div>
+<v-container>
   <amplify-authenticator v-if="authState !== 'signedin'" class="container" />
   <div v-if="authState === 'signedin' && user">
     <h1>Hello, {{user.username}}</h1>
     <button @click="signOut()">Sign Out</button>
   </div>
-</div>
+</v-container>
 </template>
 
 <script>

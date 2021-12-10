@@ -342,6 +342,28 @@ export const createPlayer = /* GraphQL */ `
       dob
       height
       weight
+      currentLocation {
+        id
+        lng
+        lat
+        playerId
+        player {
+          id
+          name
+          dob
+          height
+          weight
+          twitterURL
+          facebookURL
+          createdAt
+          updatedAt
+          playerCurrentLocationId
+          owner
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       locations {
         items {
           id
@@ -350,13 +372,15 @@ export const createPlayer = /* GraphQL */ `
           playerId
           createdAt
           updatedAt
-          playerLocationsId
           owner
         }
         nextToken
       }
+      twitterURL
+      facebookURL
       createdAt
       updatedAt
+      playerCurrentLocationId
       owner
     }
   }
@@ -372,6 +396,28 @@ export const updatePlayer = /* GraphQL */ `
       dob
       height
       weight
+      currentLocation {
+        id
+        lng
+        lat
+        playerId
+        player {
+          id
+          name
+          dob
+          height
+          weight
+          twitterURL
+          facebookURL
+          createdAt
+          updatedAt
+          playerCurrentLocationId
+          owner
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       locations {
         items {
           id
@@ -380,13 +426,15 @@ export const updatePlayer = /* GraphQL */ `
           playerId
           createdAt
           updatedAt
-          playerLocationsId
           owner
         }
         nextToken
       }
+      twitterURL
+      facebookURL
       createdAt
       updatedAt
+      playerCurrentLocationId
       owner
     }
   }
@@ -402,6 +450,28 @@ export const deletePlayer = /* GraphQL */ `
       dob
       height
       weight
+      currentLocation {
+        id
+        lng
+        lat
+        playerId
+        player {
+          id
+          name
+          dob
+          height
+          weight
+          twitterURL
+          facebookURL
+          createdAt
+          updatedAt
+          playerCurrentLocationId
+          owner
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       locations {
         items {
           id
@@ -410,13 +480,15 @@ export const deletePlayer = /* GraphQL */ `
           playerId
           createdAt
           updatedAt
-          playerLocationsId
           owner
         }
         nextToken
       }
+      twitterURL
+      facebookURL
       createdAt
       updatedAt
+      playerCurrentLocationId
       owner
     }
   }
@@ -437,16 +509,27 @@ export const createLocation = /* GraphQL */ `
         dob
         height
         weight
+        currentLocation {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          owner
+        }
         locations {
           nextToken
         }
+        twitterURL
+        facebookURL
         createdAt
         updatedAt
+        playerCurrentLocationId
         owner
       }
       createdAt
       updatedAt
-      playerLocationsId
       owner
     }
   }
@@ -467,16 +550,27 @@ export const updateLocation = /* GraphQL */ `
         dob
         height
         weight
+        currentLocation {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          owner
+        }
         locations {
           nextToken
         }
+        twitterURL
+        facebookURL
         createdAt
         updatedAt
+        playerCurrentLocationId
         owner
       }
       createdAt
       updatedAt
-      playerLocationsId
       owner
     }
   }
@@ -497,16 +591,27 @@ export const deleteLocation = /* GraphQL */ `
         dob
         height
         weight
+        currentLocation {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          owner
+        }
         locations {
           nextToken
         }
+        twitterURL
+        facebookURL
         createdAt
         updatedAt
+        playerCurrentLocationId
         owner
       }
       createdAt
       updatedAt
-      playerLocationsId
       owner
     }
   }

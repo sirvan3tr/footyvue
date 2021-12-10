@@ -120,58 +120,6 @@ export const listGames = /* GraphQL */ `
     }
   }
 `;
-export const gameByHomeTeamCreatedAtOpponentTeam = /* GraphQL */ `
-  query GameByHomeTeamCreatedAtOpponentTeam(
-    $homeTeamId: ID
-    $createdAtOpponentTeamId: ModelGameByhomeTeamCreatedAtOpponentTeamCompositeKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelGameFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    GameByHomeTeamCreatedAtOpponentTeam(
-      homeTeamId: $homeTeamId
-      createdAtOpponentTeamId: $createdAtOpponentTeamId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        homeTeamId
-        homeTeam {
-          id
-          name
-          county
-          country
-          createdAt
-          updatedAt
-          owner
-        }
-        opponentTeamId
-        opponentTeam {
-          id
-          name
-          county
-          country
-          createdAt
-          updatedAt
-          owner
-        }
-        createdAt
-        goals {
-          nextToken
-        }
-        updatedAt
-        gameHomeTeamId
-        gameOpponentTeamId
-        owner
-      }
-      nextToken
-    }
-  }
-`;
 export const getGoal = /* GraphQL */ `
   query GetGoal($id: ID!) {
     getGoal(id: $id) {
@@ -254,6 +202,28 @@ export const getPlayer = /* GraphQL */ `
       dob
       height
       weight
+      currentLocation {
+        id
+        lng
+        lat
+        playerId
+        player {
+          id
+          name
+          dob
+          height
+          weight
+          twitterURL
+          facebookURL
+          createdAt
+          updatedAt
+          playerCurrentLocationId
+          owner
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       locations {
         items {
           id
@@ -262,13 +232,15 @@ export const getPlayer = /* GraphQL */ `
           playerId
           createdAt
           updatedAt
-          playerLocationsId
           owner
         }
         nextToken
       }
+      twitterURL
+      facebookURL
       createdAt
       updatedAt
+      playerCurrentLocationId
       owner
     }
   }
@@ -286,11 +258,31 @@ export const listPlayers = /* GraphQL */ `
         dob
         height
         weight
+        currentLocation {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          owner
+        }
         locations {
+          items {
+            id
+            lng
+            lat
+            playerId
+            createdAt
+            updatedAt
+          }
           nextToken
         }
+        twitterURL
+        facebookURL
         createdAt
         updatedAt
+        playerCurrentLocationId
         owner
       }
       nextToken
@@ -310,16 +302,27 @@ export const getLocation = /* GraphQL */ `
         dob
         height
         weight
+        currentLocation {
+          id
+          lng
+          lat
+          playerId
+          createdAt
+          updatedAt
+          owner
+        }
         locations {
           nextToken
         }
+        twitterURL
+        facebookURL
         createdAt
         updatedAt
+        playerCurrentLocationId
         owner
       }
       createdAt
       updatedAt
-      playerLocationsId
       owner
     }
   }
@@ -342,13 +345,67 @@ export const listLocations = /* GraphQL */ `
           dob
           height
           weight
+          twitterURL
+          facebookURL
+          createdAt
+          updatedAt
+          playerCurrentLocationId
+          owner
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const gameByHomeTeamCreatedAtOpponentTeam = /* GraphQL */ `
+  query GameByHomeTeamCreatedAtOpponentTeam(
+    $homeTeamId: ID
+    $createdAtOpponentTeamId: ModelGameByhomeTeamCreatedAtOpponentTeamCompositeKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelGameFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    GameByHomeTeamCreatedAtOpponentTeam(
+      homeTeamId: $homeTeamId
+      createdAtOpponentTeamId: $createdAtOpponentTeamId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        homeTeamId
+        homeTeam {
+          id
+          name
+          county
+          country
+          createdAt
+          updatedAt
+          owner
+        }
+        opponentTeamId
+        opponentTeam {
+          id
+          name
+          county
+          country
           createdAt
           updatedAt
           owner
         }
         createdAt
+        goals {
+          nextToken
+        }
         updatedAt
-        playerLocationsId
+        gameHomeTeamId
+        gameOpponentTeamId
         owner
       }
       nextToken

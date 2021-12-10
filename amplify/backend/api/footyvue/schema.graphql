@@ -19,7 +19,12 @@ type Game @model
     { allow: private, operations: [create, read] }
   ]) {
   id: ID!
-  homeTeamId: ID! @index(name: "byhomeTeamCreatedAtOpponentTeam", sortKeyFields: ["createdAt", "opponentTeamId"], queryField: "GameByHomeTeamCreatedAtOpponentTeam")
+  homeTeamId: ID!
+    @index(
+      name: "byhomeTeamCreatedAtOpponentTeam",
+      sortKeyFields: ["createdAt", "opponentTeamId"],
+      queryField: "GameByHomeTeamCreatedAtOpponentTeam"
+    )
   homeTeam: Team! @hasOne
   opponentTeamId: ID!
   opponentTeam: Team! @hasOne
@@ -30,7 +35,7 @@ type Game @model
 type Goal @model
   @auth(rules: [
     { allow: owner, operations: [create, read, update, delete] },
-    { allow: private, operations: [create, read] }
+    { allow: private, operations: [create, read, update, delete] }
   ]) {
   id: ID!
   type: GoalType
@@ -47,25 +52,27 @@ enum GoalType {
 type Player @model
   @auth(rules: [
     { allow: owner, operations: [create, read, update, delete] },
-    { allow: private, operations: [create, read] }
+    { allow: private, operations: [create, read, update, delete] }
   ]) {
   id: ID!
   name: String!
   dob: String!
   height: Int!  # in cm
-  weight: Int!  # in cm
-  locations: [Location] @hasMany
+  weight: Int!  # in kg
+  currentLocation: Location @hasOne
+  locations: [Location] @hasMany(indexName: "byPlayer", fields: ["id"])
   twitterURL: AWSURL
+  facebookURL: AWSURL
 }
 
 type Location @model
   @auth(rules: [
     { allow: owner, operations: [create, read, update, delete] },
-    { allow: private, operations: [create, read] }
+    { allow: private, operations: [create, read, update, delete] }
   ]) {
   id: ID!
   lng: Float!
   lat: Float!
-  playerId: ID!
+  playerId: ID! @index(name: "byPlayer")
   player: Player @belongsTo(fields: ["playerId"])
 }
